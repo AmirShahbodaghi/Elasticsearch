@@ -26,9 +26,4 @@ ELASTISEARCH/
 └── README.md
 
 
-## Deploy the Stack
 
-```
-ansible-playbook -i inventory/hosts.yml elasticsearch.yml
-
-```
