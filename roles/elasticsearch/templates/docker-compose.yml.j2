@@ -1,0 +1,26 @@
+services:
+  {{ inventory_hostname }}:
+    image: {{ es_image }}
+    container_name: es01
+    environment:
+      - node.name={{ inventory_hostname }}
+      - cluster.name={{ es_cluster_name }}
+      - network.host=0.0.0.0
+      - network.publish_host={{ ansible_host }}
+      - discovery.seed_hosts={{ es_seed_hosts }}
+      # Dynamically generates "server1,server2,server3" matching node.name
+      - cluster.initial_master_nodes={{ groups['elasticsearch'] | join(',') }}
+      - ELASTIC_PASSWORD={{ es_password }}
+      - xpack.security.enabled=true
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.keystore.path=certs/elastic-certificates.p12
+      - xpack.security.transport.ssl.truststore.path=certs/elastic-certificates.p12
+      - ES_JAVA_OPTS={{ es_java_opts }}
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - {{ es_base_dir }}/esdata:/usr/share/elasticsearch/data
+      - {{ es_base_dir }}/certs:/usr/share/elasticsearch/config/certs
+    restart: always

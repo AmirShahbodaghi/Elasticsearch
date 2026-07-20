@@ -1,0 +1,16 @@
+---
+- hosts: elasticsearch
+  roles:
+    - role: elasticsearch
+  gather_facts: yes
+  any_errors_fatal: true
+  tags: [elasticsearch]
+
+- hosts: kibana
+  roles:
+    - role: kibana
+  gather_facts: yes
+  any_errors_fatal: true
+  tags: [kibana]     
+  
+   
