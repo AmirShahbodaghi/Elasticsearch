@@ -29,6 +29,7 @@ ELASTISEARCH/
 
 ## Deploy the Stack
 
-```
+```text
 ansible-playbook -i inventory/hosts.yml elasticsearch.yml
+
 ```
