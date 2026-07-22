@@ -1,5 +1,5 @@
 es_version: "8.14.0"
-es_image: "pull-devops.tamin.ir/elasticsearch/elasticsearch:{{ es_version }}"
+es_image: "your-registery/elasticsearch/elasticsearch:{{ es_version }}"
 es_cluster_name: "es-cluster"
 es_password: "fdgdsk835vmrk5dneFJJlj2545"
 
